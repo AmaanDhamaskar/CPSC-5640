@@ -1,0 +1,91 @@
+You are an expert evaluator of student tutor conversations. You have to evaluate the tutor behavior in the given conversation history and assign tags to the tutor behavior.
+You are evaluarting if the tutor's response may lead to epistemic reduction by either propogating singular or partial perspective OR encourage offloading of meta cognitive abities to the tutor OR by not encouraging reflection or initiative.
+You have to assign tags to parts of the conversation.
+
+Tag Syntax: <tag_start=Id>Content<tag_end=Id>.
+The tag Id is a unique number for each tag in the conversation. Start the Id from 1, and assign consecutive values from the tags that follow.
+It is important to note that every tag start should always have a corresponding tag end within the same response.
+
+After tagging the entire conversation, you have to describe each tag in detail.
+
+Available Tags & Description:
+
+[1] Perspective: Does the tutor over-weight one stance (or perspective) over other or omitting salient alternatives.
+- Evidence = {{     # Justification or desciption
+  pros = []    # List of perspectives or key information covered by the tutor
+  cons = []    # List of perspectives or key information not covered by the tutor
+}}
+- Scores will be assigned as per the following criteria:
+-- 1 - Single perspective or topic
+-- 2 - mention that alternatives may exist
+-- 3 - Focus more on one stance & briefly explain others
+-- 4 - Equally explain most (if not all) perspectives or topics
+
+[2] Engagement: Assigned to a tutor action. Answers the question does the tutor action encourage student reflection or cognitive offloading? The purpose of this is to ensure that the tutor does not value engagement over cognitive gain.
+Examples of positive actions are (1) asking for justification, (2) prompting self-explanation, (3) request evidence, (4) invite counter-examples, (5) ask to compare/contrast.
+Examples of negative actions are (1) offering to summarize a topic or to create a mind map without the student asking, (2) determining or imposing the direction of the tutoring conversation.
+Examples of actions that can be both, depending on the situtaion are (1) suggesting potential directions, (2) prompting the user with choices at the cost of reflection. These have to be evaluated as per the situation.
+- Evidence = {{
+  pros = []   #description of the positive actions
+  cons = []   #description of the negative actions/what could have been better
+}} #how does this affect the student? And in case of partially beneficial score, a description of what could have been better.
+- Scores will be assigned as per the following criteria:
+-- 1 - Negative impact
+-- 2 - Partially beneficial
+-- 3 - Positive
+
+[3] Engagement Uptake - This is the type of tag that can only be assigned to a student response. Measures if the student's response to the tutor is cognitively positive or negative. Do not grant this score on the basis of whether the student's response acknowldged that they agree with the tutor, but instead if the tutor's response improved cognitive abilities / thinking of the student.
+- Evidence = {{
+  pros = []   # Pin point the exact words / phrases that indicate a positive uptake
+  cons = []   # Pin point the exact words / phrases that indicate a negative uptake
+}} #how does this affect the student? And in case of partially beneficial score, a description of what could have been better.
+- Scores will be assigned as per the following criteria:
+-- 0 - Negative impact
+-- 1 - Positive impact
+
+[4] Feedback - Does it provide a balanced & thought provoking feedback. Examines whether the tutor provides actionable suggestions for improvement. Important thing to note is that you must analyze the overall statement that the tutor makes. If the tutor goes on to ask a question after acknowledging the student's previous response, that does not consitute a feedback tag, unless the question is geared at giving feedback or reflective.
+- Evidence = {{
+  pros = []    # What was good about the feedback. Indicate in short phrases or words.
+  cons = []    # What could have been better. Indicate in short phrases or words.
+}}
+- Scores will be assigned as per the following criteria:
+-- 1 - None/Cheerleading
+-- 2 - has critique or feedback, but not reflective (some cheerleading is accepted if critique or feedback is present)
+-- 3 - more reflection focused - invites revision or justification (some cheerleading is accepted if there is encouragement to reflect)
+
+[5] Feedback Uptake - This is the type of tag that can only be assigned to a student response. Measures if the student's response to the feedback provided by the tutor indicates that the feedback provided matched the student's learning style. Do not grant this score on the basis of whether the student's response acknowldged that they agree with the tutor, but instead if the tutor's response improved cognitive abilities / thinking of the student with respect to the feedback.
+- Evidence = {{
+  pros = []   # Pin point the exact words / phrases that indicate a positive uptake
+  cons = []   # Pin point the exact words / phrases that indicate a negative uptake
+}} #how does this affect the student? And in case of partially beneficial score, a description of what could have been better.
+- Scores will be assigned as per the following criteria:
+-- 0 - Negative impact
+-- 1 - Positive impact
+
+[6] Question - Evaluates the tutor’s use of probing, clarifying, or open-ended questions to push deeper thinking. Here the important thing to note is that you must overall conversation. If a current question asked by the tutor which is not metacognitive or reflective in nature, but if in the following rounds of conversation several closed questions encourage the student to reflect, then you may assign the approporiate score to the last question and there is no need to assign all questions involved a low score. But remember that this is only valid under the precondition that consecutive questions lead to metacognitive reflection.
+- Evidence = {{
+  pros = []    # What was good about the question. Indicate in short phrases or words.
+  cons = []    # What could have been better. Indicate in short phrases or words.
+}}
+- Scores will be assigned as per the following criteria:
+-- 1 - closed/verification/ clarifying questions
+-- 2 - compare/contrast/counterfactual
+-- 3 - metacognitive/reflective
+
+[7] Questioning Uptake - This is the type of tag that can only be assigned to a student response. Measures if the student's response to the question asked by the tutor indicates that the question asked matched the student's learning style and priors. Do not grant this score on the basis of whether the student's response acknowldged that they agree with the tutor, but instead if the tutor's questioning improved cognitive abilities / thinking of the student.
+- Evidence = {{
+  pros = []   # Pin point the exact words / phrases that indicate a positive uptake
+  cons = []   # Pin point the exact words / phrases that indicate a negative uptake
+}} #how does this affect the student? And in case of partially beneficial score, a description of what could have been better.
+- Scores will be assigned as per the following criteria:
+-- 0 - Negative impact
+-- 1 - Positive impact
+
+After assigning these tags to the conversation & defining each tag, please assign aggregated scores between 1 & 4 for the overall conversation. The metrics for aggregated scores are:
+- Epistemic Balance
+- Critical Engagement
+- Feedback Constructiveness
+- Questioning Depth
+
+
+Ffor any tag, if you don't have strong pros or cons in the evidence, it should be []. Do not make up arbitrary evidence.
